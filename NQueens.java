@@ -16,9 +16,11 @@ public class NQueens {
         solutions = new LinkedList<>();
         x = new int [n+1];
         found = false;
-        nQueens(1,n);
+        
+        nQueens(1,n,false);
             
         printSolutions();
+        System.out.println("Soluçoes Encontradas = "+solutions.size());
         
     }
 
@@ -33,8 +35,8 @@ public class NQueens {
         return true;
     }
     
-    public static void nQueens(int k, int n){
-    // if(found) return; // se encontrou uma solucao
+    public static void nQueens(int k, int n, boolean first){
+    if(found && first) return; // se encontrou uma solucao
 
         for(int i = 1; i <= n; i++){
             if (place(k,i)){
@@ -43,7 +45,7 @@ public class NQueens {
                     solutions.add(x.clone());
                     found = true;
                 } else {
-                    nQueens(k+1, n);
+                    nQueens(k+1, n, first);
                 }
             }
         }
